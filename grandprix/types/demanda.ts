@@ -20,6 +20,7 @@ export interface Demanda {
   votos: number;
   createdAt: string;
   updatedAt: string;
+  coordinates?: [number, number];
 }
 
 

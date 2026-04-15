@@ -57,8 +57,8 @@ export function Sidebar() {
           </div>
           {!isCollapsed && (
             <div className="flex flex-col ml-1">
-              <span className="text-[14px] font-black text-slate-900 tracking-tighter leading-none">ACESSÍVEL</span>
-              <span className="text-[10px] font-bold text-[#008542] uppercase tracking-[0.1em] mt-0.5">Petrobras</span>
+              <span className="text-[18px] font-black text-slate-900 tracking-tighter leading-none">ACESSÍVEL</span>
+              <span className="text-[12px] font-black text-[#008542] uppercase tracking-[0.2em] mt-1">Petrobras</span>
             </div>
           )}
         </div>

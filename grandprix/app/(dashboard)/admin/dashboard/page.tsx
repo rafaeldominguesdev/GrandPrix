@@ -14,7 +14,8 @@ import {
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { mockDemandas } from "@/lib/mock-data";
-import { DemandTable } from "@/components/features/demands/DemandTable";
+import { DemandFeed } from "@/components/features/demands/DemandFeed";
+import { BrazilHeatmap } from "@/components/features/admin/BrazilHeatmap";
 import { cn } from "@/lib/utils";
 
 export default function AdminDashboardPage() {
@@ -71,6 +72,9 @@ export default function AdminDashboardPage() {
         ))}
       </div>
 
+      {/* Seção Geográfica (NOVO V3) */}
+      <BrazilHeatmap />
+
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
         {/* Lista Principal */}
         <div className="xl:col-span-2 space-y-6">
@@ -83,7 +87,7 @@ export default function AdminDashboardPage() {
               </Button>
             </div>
           </div>
-          <DemandTable data={mockDemandas.slice(0, 8)} isAdmin />
+          <DemandFeed data={mockDemandas.slice(0, 8)} isAdmin />
         </div>
 
         {/* Sidebar de Insights/Alertas */}
