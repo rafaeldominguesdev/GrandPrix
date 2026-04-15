@@ -44,18 +44,18 @@ export function DemandRow({ demanda, isAdmin = false }: DemandRowProps) {
             </Link>
             
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[10px] font-black text-primary bg-primary/5 px-2 py-0.5 rounded-md border border-primary/10 uppercase tracking-widest">
+              <span className="text-xs font-black text-primary bg-primary/5 px-2.5 py-1 rounded-md border border-primary/10 uppercase tracking-widest">
                 {demanda.categoria.nome}
               </span>
-              <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md uppercase tracking-widest">
+              <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md uppercase tracking-widest">
                 {(BARREIRA_LABELS as any)[demanda.tipoBarreira.slug]}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 text-[11px] font-medium text-slate-400">
-            <div className="flex items-center gap-1">
-              <User className="w-3 h-3" />
+          <div className="flex items-center gap-3 text-xs font-medium text-slate-400">
+            <div className="flex items-center gap-1.5">
+              <User className="w-4 h-4" />
               <span>{demanda.autor.name}</span>
             </div>
             <div className="flex items-center gap-1">
@@ -77,8 +77,8 @@ export function DemandRow({ demanda, isAdmin = false }: DemandRowProps) {
           {lastResponse ? (
             <div className="flex items-center gap-2 mt-auto">
               <div className="text-right">
-                <p className="text-[9px] font-black text-slate-400 uppercase tracking-tighter">Última resposta</p>
-                <p className="text-[10px] font-bold text-slate-600">
+                <p className="text-[11px] font-black text-slate-400 uppercase tracking-tighter">Última resposta</p>
+                <p className="text-xs font-bold text-slate-600">
                   {formatDistanceToNow(new Date(lastResponse.createdAt), {
                     addSuffix: true,
                     locale: ptBR,

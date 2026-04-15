@@ -93,27 +93,27 @@ export function BrazilHeatmap() {
           
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
-                <span className="text-[11px] font-bold text-slate-600 uppercase">Estável</span>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-[#10b981] shadow-[0_0_12px_rgba(16,185,129,0.4)]" />
+                <span className="text-sm font-black text-slate-700 uppercase tracking-tight">Estável</span>
               </div>
-              <span className="text-[9px] font-black text-slate-400">0-1</span>
+              <span className="text-xs font-bold text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md">0-1 DEM.</span>
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]" />
-                <span className="text-[11px] font-bold text-slate-600 uppercase">Atenção</span>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.4)]" />
+                <span className="text-sm font-black text-slate-700 uppercase tracking-tight">Atenção</span>
               </div>
-              <span className="text-[9px] font-black text-slate-400">2-9</span>
+              <span className="text-xs font-bold text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md">2-9 DEM.</span>
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]" />
-                <span className="text-[11px] font-bold text-slate-600 uppercase">Crítico</span>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.4)]" />
+                <span className="text-sm font-black text-slate-700 uppercase tracking-tight">Crítico</span>
               </div>
-              <span className="text-[9px] font-black text-slate-400">10+</span>
+              <span className="text-xs font-bold text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md">10+ DEM.</span>
             </div>
           </div>
         </div>
@@ -212,9 +212,9 @@ export function BrazilHeatmap() {
                               <p className="text-lg font-black text-slate-900">{count}</p>
                             </div>
                             <div className="text-right">
-                              <p className="text-[9px] font-black text-slate-400 uppercase">Status</p>
-                              <span className="text-[10px] font-bold text-slate-500 bg-slate-50 px-2 py-0.5 rounded-md uppercase">Ativa</span>
-                            </div>
+                                <p className="text-[9px] font-black text-slate-400 uppercase">Status</p>
+                                <span className="text-xs font-bold text-slate-500 bg-slate-50 px-3 py-1 rounded-md uppercase">Ativa</span>
+                             </div>
                         </div>
                       </div>
                     </TooltipContent>
@@ -233,8 +233,8 @@ export function BrazilHeatmap() {
              <span className="text-lg font-black italic">!</span>
           </div>
           <div>
-            <p className="text-[8px] font-black text-red-400 uppercase tracking-[0.2em] mb-1">Alerta de Crise</p>
-            <p className="text-[11px] font-medium leading-tight">
+            <p className="text-xs font-black text-red-400 uppercase tracking-[0.2em] mb-1">Alerta de Crise</p>
+            <p className="text-sm font-medium leading-tight">
               O <span className="text-white font-bold">Rio de Janeiro</span> ultrapassou o limite operacional (10+).
             </p>
           </div>
