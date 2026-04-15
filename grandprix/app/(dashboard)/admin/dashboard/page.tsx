@@ -72,22 +72,23 @@ export default function AdminDashboardPage() {
         ))}
       </div>
 
-      {/* Seção Geográfica (NOVO V3) */}
-      <BrazilHeatmap />
-
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-        {/* Lista Principal */}
-        <div className="xl:col-span-2 space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-black text-slate-900">Triagem Técnica</h2>
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" className="h-10 px-4 text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900">
-                <Filter className="w-4 h-4 mr-2" />
-                Filtros
-              </Button>
+        {/* Analytics & Map Section */}
+        <div className="xl:col-span-2 space-y-8">
+          <BrazilHeatmap />
+          
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-black text-slate-900">Triagem Técnica</h2>
+              <div className="flex items-center gap-2">
+                <Button variant="ghost" size="sm" className="h-10 px-4 text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900">
+                  <Filter className="w-4 h-4 mr-2" />
+                  Filtros
+                </Button>
+              </div>
             </div>
+            <DemandFeed data={mockDemandas.slice(0, 8)} isAdmin />
           </div>
-          <DemandFeed data={mockDemandas.slice(0, 8)} isAdmin />
         </div>
 
         {/* Sidebar de Insights/Alertas */}
