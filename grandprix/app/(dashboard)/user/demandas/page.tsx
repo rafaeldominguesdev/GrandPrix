@@ -1,7 +1,7 @@
 "use client";
 
 import { mockDemandas } from "@/lib/mock-data";
-import { DemandTable } from "@/components/features/demands/DemandTable";
+import { DemandFeed } from "@/components/features/demands/DemandFeed";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Search, Filter } from "lucide-react";
 import Link from "next/link";
@@ -16,7 +16,7 @@ export default function UserDemandListPage() {
           <h1 className="text-3xl font-black text-slate-900 tracking-tight">Meus Relatos</h1>
           <p className="text-sm font-medium text-slate-500">Gerencie e acompanhe o status de todas as suas solicitações.</p>
         </div>
-        <Link href="/nova-demanda">
+        <Link href="/user/nova-demanda">
           <Button className="h-11 px-6 bg-[#008542] hover:bg-[#006e36] text-white font-black uppercase tracking-widest text-[10px] shadow-sm gap-2">
             <PlusCircle className="w-4 h-4" />
             Novo Registro
@@ -44,7 +44,7 @@ export default function UserDemandListPage() {
         </div>
       </div>
 
-      <DemandTable data={userDemands} />
+      <DemandFeed data={userDemands} />
     </div>
   );
 }

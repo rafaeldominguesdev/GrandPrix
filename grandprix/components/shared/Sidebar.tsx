@@ -50,15 +50,15 @@ export function Sidebar() {
       )}
     >
       {/* Brand Header */}
-      <div className="h-16 flex items-center px-6 border-b border-slate-100">
+      <div className="h-16 flex items-center px-4 border-b border-slate-100">
         <div className="flex items-center gap-3 overflow-hidden whitespace-nowrap">
-          <div className="bg-[#008542] shrink-0 p-1.5 rounded-lg">
-            <Accessibility className="w-5 h-5 text-white" />
+          <div className="shrink-0 flex items-center">
+             <img src="/img/petrobrasLogo.svg" alt="Petrobras Logo" className="w-auto h-8 object-contain" />
           </div>
           {!isCollapsed && (
-            <div className="flex flex-col">
-              <span className="text-sm font-bold text-slate-900 tracking-tight">Portal Acessível</span>
-              <span className="text-[10px] font-bold text-[#008542] uppercase tracking-[0.1em]">Petrobras</span>
+            <div className="flex flex-col ml-1">
+              <span className="text-[14px] font-black text-slate-900 tracking-tighter leading-none">ACESSÍVEL</span>
+              <span className="text-[10px] font-bold text-[#008542] uppercase tracking-[0.1em] mt-0.5">Petrobras</span>
             </div>
           )}
         </div>
