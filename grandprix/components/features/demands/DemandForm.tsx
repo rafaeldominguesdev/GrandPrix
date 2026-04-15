@@ -3,8 +3,20 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { 
+  Building2, 
+  MessageSquare, 
+  Cpu, 
+  Truck, 
+  Scale, 
+  Smile, 
+  Globe2,
+  AlertCircle,
+  ChevronLeft,
+  Paperclip,
+  ArrowRight
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -16,29 +28,29 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertCircle, ChevronLeft, Save } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { TipoBarreira, BARREIRA_LABELS } from "@/lib/constants";
 
 const formSchema = z.object({
-  titulo: z.string().min(10, {
-    message: "O título deve ter pelo menos 10 caracteres.",
+  titulo: z.string().min(10, "O título deve ter pelo menos 10 caracteres."),
+  descricao: z.string().min(30, "Descreva o relato com mais detalhes (mín. 30 caracteres)."),
+  tipoBarreira: z.nativeEnum(TipoBarreira, {
+    message: "Selecione o tipo de barreira.",
   }),
-  descricao: z.string().min(20, {
-    message: "A descrição deve ter pelo menos 20 caracteres.",
-  }),
-  categoriaId: z.string().min(1, "Selecione uma categoria."),
-  tipoBarreiraId: z.string().min(1, "Selecione o tipo de barreira."),
-
-  unidade: z.string().optional(),
+  unidade: z.string().min(1, "Informe a unidade ou local."),
 });
+
+const barrierIcons = {
+  [TipoBarreira.ARQUITETONICA]: Building2,
+  [TipoBarreira.COMUNICACIONAL]: MessageSquare,
+  [TipoBarreira.TECNOLOGICA]: Cpu,
+  [TipoBarreira.TRANSPORTE]: Truck,
+  [TipoBarreira.INSTITUCIONAL]: Scale,
+  [TipoBarreira.ATITUDINAL]: Smile,
+  [TipoBarreira.CULTURAL]: Globe2,
+};
 
 export function DemandForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -52,154 +64,152 @@ export function DemandForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    // Aqui viria a chamada para o serviço/API
-    alert("Demanda enviada com sucesso! (Simulação)");
+    alert("Demanda enviada para análise técnica.");
   }
 
   return (
-    <div className="space-y-6 max-w-2xl mx-auto">
-      <div className="flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors w-fit">
-        <Link href="/demandas" className="flex items-center gap-1 text-sm font-medium">
-          <ChevronLeft className="w-4 h-4" />
-          Voltar para listagem
+    <div className="max-w-4xl mx-auto space-y-8">
+      <div className="flex items-center gap-2 text-slate-400 hover:text-slate-900 transition-colors w-fit group">
+        <Link href="/demandas" className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+          <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+          Voltar para meu dashboard
         </Link>
       </div>
 
-      <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">Nova Demanda</h1>
-        <p className="text-slate-500 mt-1 uppercase tracking-widest text-[10px] font-bold">Registro de Acessibilidade</p>
+      <div className="space-y-1">
+        <h1 className="text-3xl font-black tracking-tight text-slate-900">Registrar Relato</h1>
+        <p className="text-sm font-medium text-slate-500">Ajude a identificar barreiras e promover a inclusão na Petrobras.</p>
       </div>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <Card className="border-slate-200 shadow-sm overflow-hidden">
-            <CardHeader className="bg-slate-50/50 border-b border-slate-100">
-              <CardTitle className="text-lg font-bold flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 text-primary" />
-                Informações da Demanda
-              </CardTitle>
-              <CardDescription>
-                Descreva detalhadamente a dificuldade ou sugestão de melhoria.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-6 space-y-6">
-              <FormField
-                control={form.control}
-                name="titulo"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sm font-bold text-slate-700">Título Sugestivo</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Ex: Falta de rampa no Bloco C" {...field} className="bg-slate-50 border-slate-200" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="categoriaId"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-bold text-slate-700">Categoria</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-8">
+              <Card className="border-slate-200 shadow-sm overflow-hidden">
+                <CardHeader className="bg-slate-50/50 border-b border-slate-100">
+                  <CardTitle className="text-sm font-bold uppercase tracking-widest text-slate-500">Detalhes da Ocorrência</CardTitle>
+                </CardHeader>
+                <CardContent className="p-8 space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="titulo"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-bold text-slate-700">O que aconteceu? (Título)</FormLabel>
                         <FormControl>
-                          <SelectTrigger className="bg-slate-50 border-slate-200">
-                            <SelectValue placeholder="Selecione..." />
-                          </SelectTrigger>
+                          <Input placeholder="Resuma em poucas palavras..." {...field} className="h-12 bg-slate-50 border-slate-200 focus:bg-white transition-all" />
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="cat-1">Infraestrutura</SelectItem>
-                          <SelectItem value="cat-2">Digital / Sistema</SelectItem>
-                          <SelectItem value="cat-3">Comunicação</SelectItem>
-                          <SelectItem value="cat-4">Atendimento</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                <FormField
-                  control={form.control}
-                  name="tipoBarreiraId"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-bold text-slate-700">Tipo de Barreira</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormField
+                    control={form.control}
+                    name="descricao"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-bold text-slate-700">Relato Detalhado</FormLabel>
                         <FormControl>
-                          <SelectTrigger className="bg-slate-50 border-slate-200">
-                            <SelectValue placeholder="Selecione..." />
-                          </SelectTrigger>
+                          <Textarea 
+                            placeholder="Descreva a situação, o local exato e o impacto observado..." 
+                            className="min-h-[200px] bg-slate-50 border-slate-200 focus:bg-white transition-all resize-none"
+                            {...field} 
+                          />
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="bar-1">Arquitetônica</SelectItem>
-                          <SelectItem value="bar-2">Comunicacional</SelectItem>
-                          <SelectItem value="bar-3">Tecnológica</SelectItem>
-                          <SelectItem value="bar-4">Atitudinal</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+                        <FormDescription className="text-xs">
+                          Evite citar nomes de pessoas, foque no ambiente ou processo.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <FormField
-                control={form.control}
-                name="descricao"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sm font-bold text-slate-700">Descrição Detalhada</FormLabel>
-                    <FormControl>
-                      <Textarea 
-                        placeholder="Descreva aqui o que aconteceu, onde e como podemos melhorar..." 
-                        className="min-h-[150px] bg-slate-50 border-slate-200"
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Seja o mais específico possível para facilitar a análise.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                  <div className="pt-4">
+                    <div className="flex items-center gap-4 p-4 border border-dashed border-slate-200 rounded-xl bg-slate-50 hover:bg-white transition-all cursor-pointer group">
+                      <div className="p-2 rounded-full bg-slate-200 group-hover:bg-[#008542]/10 group-hover:text-[#008542] transition-all">
+                        <Paperclip className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-bold text-slate-700">Anexar evidências (Opcional)</p>
+                        <p className="text-xs text-slate-400">Arraste fotos ou documentos (.pdf, .jpg, .png)</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
-              <FormField
-                control={form.control}
-                name="unidade"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sm font-bold text-slate-700">Unidade / Local (Opcional)</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Ex: Escritório Central - Rio de Janeiro" {...field} className="bg-slate-50 border-slate-200" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </CardContent>
-          </Card>
+            <div className="space-y-6">
+              <Card className="border-slate-200 shadow-sm overflow-hidden">
+                <CardHeader className="bg-slate-50/50 border-b border-slate-100">
+                  <CardTitle className="text-sm font-bold uppercase tracking-widest text-slate-500">Categorização</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="tipoBarreira"
+                    render={({ field }) => (
+                      <FormItem className="space-y-3">
+                        <FormLabel className="text-sm font-bold text-slate-700">Tipo de Barreira</FormLabel>
+                        <div className="grid grid-cols-1 gap-2">
+                          {Object.values(TipoBarreira).map((tipo) => {
+                            const Icon = barrierIcons[tipo];
+                            const isSelected = field.value === tipo;
+                            
+                            return (
+                              <div
+                                key={tipo}
+                                onClick={() => field.onChange(tipo)}
+                                className={cn(
+                                  "flex items-center gap-3 p-3 rounded-xl border-2 transition-all cursor-pointer group",
+                                  isSelected 
+                                    ? "border-[#008542] bg-[#008542]/5" 
+                                    : "border-slate-100 hover:border-slate-300 bg-white"
+                                )}
+                              >
+                                <div className={cn(
+                                  "p-2 rounded-lg transition-colors",
+                                  isSelected ? "bg-[#008542] text-white" : "bg-slate-100 text-slate-400 group-hover:bg-slate-200"
+                                )}>
+                                  <Icon className="w-4 h-4" />
+                                </div>
+                                <span className={cn(
+                                  "text-xs font-bold uppercase tracking-widest",
+                                  isSelected ? "text-[#008542]" : "text-slate-500"
+                                )}>
+                                  {BARREIRA_LABELS[tipo]}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-          <div className="flex justify-end gap-3">
-            <Link 
-              href="/demandas" 
-              className={cn(
-                buttonVariants({ variant: "outline" }), 
-                "h-11 px-6 font-bold uppercase tracking-widest text-[10px]"
-              )}
-            >
-              Cancelar
-            </Link>
-            <Button type="submit" className="h-11 px-8 gap-2 font-bold uppercase tracking-widest text-[10px]">
-              <Save className="w-4 h-4" />
-              Enviar Demanda
-            </Button>
+                  <FormField
+                    control={form.control}
+                    name="unidade"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-bold text-slate-700">Localização / Unidade</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Ex: EDISE - 3º Andar" {...field} className="bg-slate-50 border-slate-200" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
+              </Card>
+
+              <Button type="submit" className="w-full h-14 bg-[#008542] hover:bg-[#006e36] text-white font-black uppercase tracking-[0.2em] text-xs shadow-lg shadow-[#008542]/20 gap-2">
+                Enviar Relato <ArrowRight className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
-
         </form>
       </Form>
     </div>

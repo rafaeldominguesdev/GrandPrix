@@ -1,14 +1,8 @@
+import { DemandaStatus, TipoBarreira } from '@/lib/constants';
 import { User } from './user';
-import { Categoria } from './categoria';
-import { TipoBarreira } from './barreira';
 import { Resposta } from './resposta';
 
-export type StatusDemanda =
-  | 'NOVA'
-  | 'EM_ANALISE'
-  | 'RESPONDIDA'
-  | 'EM_ANDAMENTO'
-  | 'RESOLVIDA';
+export type StatusDemanda = DemandaStatus;
 
 export type PrioridadeDemanda = 'BAIXA' | 'MEDIA' | 'ALTA' | 'URGENTE';
 
@@ -18,16 +12,17 @@ export interface Demanda {
   descricao: string;
   status: StatusDemanda;
   prioridade: PrioridadeDemanda;
-  categoria: Categoria;
-  tipoBarreira: TipoBarreira;
+  categoria: { id: string; nome: string };
+  tipoBarreira: { id: string; slug: TipoBarreira; nome: string };
   unidade?: string;
   autor: User;
   respostas: Resposta[];
-  tags?: string[];
-  visualizacoes: number;
-  createdAt: Date;
-  updatedAt: Date;
+  votos: number;
+  createdAt: string;
+  updatedAt: string;
 }
+
+
 
 export interface CreateDemandaInput {
   titulo: string;

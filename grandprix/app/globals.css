@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #0f172a; /* Slate 900 */
+  --color-background: #f8fafc;
+  --color-foreground: #0f172a;
   
   --color-card: #ffffff;
   --color-card-foreground: #0f172a;
@@ -10,24 +10,27 @@
   --color-popover: #ffffff;
   --color-popover-foreground: #0f172a;
   
-  --color-primary: #2563eb; /* Blue 600 */
+  --color-primary: #008542;
   --color-primary-foreground: #ffffff;
   
-  --color-secondary: #f1f5f9; /* Slate 100 */
+  --color-secondary: #f1f5f9;
   --color-secondary-foreground: #0f172a;
   
-  --color-muted: #f8fafc; /* Slate 50 */
-  --color-muted-foreground: #64748b; /* Slate 500 */
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
   
   --color-accent: #f1f5f9;
   --color-accent-foreground: #0f172a;
   
   --color-destructive: #ef4444;
   --color-destructive-foreground: #ffffff;
+
+  --color-warning: #FFD100;
+  --color-warning-foreground: #003D29;
   
-  --color-border: #e2e8f0; /* Slate 200 */
+  --color-border: #e2e8f0;
   --color-input: #e2e8f0;
-  --color-ring: #2563eb;
+  --color-ring: #008542;
 
   --radius-lg: 0.5rem;
   --radius-md: calc(0.5rem - 2px);
@@ -36,13 +39,13 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
+    --background: #f8fafc;
     --foreground: #0f172a;
     --card: #ffffff;
     --card-foreground: #0f172a;
     --popover: #ffffff;
     --popover-foreground: #0f172a;
-    --primary: #2563eb;
+    --primary: #008542;
     --primary-foreground: #ffffff;
     --secondary: #f1f5f9;
     --secondary-foreground: #0f172a;
@@ -52,9 +55,11 @@
     --accent-foreground: #0f172a;
     --destructive: #ef4444;
     --destructive-foreground: #ffffff;
+    --warning: #FFD100;
+    --warning-foreground: #003D29;
     --border: #e2e8f0;
     --input: #e2e8f0;
-    --ring: #2563eb;
+    --ring: #008542;
     --radius: 0.5rem;
   }
 
@@ -105,4 +110,4 @@
   .badge-andamento { @apply bg-amber-50 text-amber-700 border-amber-100; }
   .badge-resolvida { @apply bg-emerald-50 text-emerald-700 border-emerald-100; }
   .badge-respondida { @apply bg-indigo-50 text-indigo-700 border-indigo-100; }
-}
+}

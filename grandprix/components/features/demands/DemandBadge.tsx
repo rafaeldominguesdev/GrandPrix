@@ -1,46 +1,23 @@
+import { Badge } from "@/components/ui/badge";
+import { STATUS_CONFIG, DemandaStatus } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { StatusDemanda } from "@/types/demanda";
 
 interface DemandBadgeProps {
-  status: StatusDemanda;
-  className?: string;
+  status: string;
 }
 
-const statusConfig: Record<StatusDemanda, { label: string; className: string }> = {
-  NOVA: {
-    label: "Nova",
-    className: "badge-nova",
-  },
-  EM_ANALISE: {
-    label: "Em Análise",
-    className: "badge-analise",
-  },
-  EM_ANDAMENTO: {
-    label: "Em Andamento",
-    className: "badge-andamento",
-  },
-  RESOLVIDA: {
-    label: "Resolvida",
-    className: "badge-resolvida",
-  },
-  RESPONDIDA: {
-    label: "Respondida",
-    className: "badge-respondida",
-  },
-};
-
-export function DemandBadge({ status, className }: DemandBadgeProps) {
-  const config = statusConfig[status];
+export function DemandBadge({ status }: DemandBadgeProps) {
+  const config = STATUS_CONFIG[status as DemandaStatus] || STATUS_CONFIG[DemandaStatus.NOVA];
 
   return (
-    <span
+    <Badge
+      variant="outline"
       className={cn(
-        "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border",
-        config.className,
-        className
+        "rounded-full uppercase text-[10px] font-black tracking-widest px-3 py-0.5",
+        config.color
       )}
     >
       {config.label}
-    </span>
+    </Badge>
   );
 }
