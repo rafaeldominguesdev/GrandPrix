@@ -17,7 +17,11 @@ import {
   User,
   LogOut,
   CreditCard,
-  Bell
+  Bell,
+  HelpCircle,
+  Plus,
+  Sparkles,
+  ChevronRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -111,54 +115,89 @@ export function Sidebar() {
       <div className="mt-auto px-3 pb-4 pt-6">
         <div className={cn("flex flex-col gap-2", isCollapsed ? "items-center" : "items-stretch")}>
           <DropdownMenu>
-            <DropdownMenuTrigger 
-              className={cn(
-                "w-full flex items-center gap-3 py-4 rounded-2xl hover:bg-slate-50 transition-colors duration-500 ease-out group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#008542]/20 cursor-pointer",
-                isCollapsed ? "justify-center px-0" : "justify-start px-3"
-              )}
-            >
-              <div className="w-11 h-11 rounded-full bg-[#008542]/10 border border-[#008542]/20 flex items-center justify-center text-[#008542] shrink-0 group-hover:scale-105 transition-transform">
-                <User className="w-6 h-6" />
-              </div>
-              {!isCollapsed && (
-                <div className="flex flex-col items-start overflow-hidden text-left">
-                  <span className="text-sm font-black text-slate-900 leading-none truncate w-full">Rafael Caldeira</span>
-                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1 truncate w-full">Gestor de UX</span>
+            <DropdownMenuTrigger>
+              <div 
+                className={cn(
+                  "w-full flex items-center gap-3 py-2.5 rounded-xl transition-all duration-300 ease-in-out group focus:outline-none cursor-pointer hover:bg-slate-100/60",
+                  isCollapsed ? "justify-center px-0" : "justify-start px-3"
+                )}
+              >
+                <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold text-[10px] shrink-0 transition-transform group-hover:scale-105">
+                  RC
                 </div>
-              )}
+                {!isCollapsed && (
+                  <div className="flex flex-col items-start overflow-hidden text-left">
+                    <span className="text-sm font-medium text-slate-700 leading-tight truncate w-full">Rafael Caldeira</span>
+                    <span className="text-[11px] text-slate-400 truncate w-full font-medium">Gestor de UX</span>
+                  </div>
+                )}
+              </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" side="right" className="w-64 mb-4 rounded-2xl border-slate-200 shadow-xl p-2 animate-in slide-in-from-left-2 duration-200">
-            <DropdownMenuGroup>
-              <DropdownMenuLabel className="px-3 py-2 text-xs font-black uppercase tracking-widest text-slate-400">Minha Conta</DropdownMenuLabel>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator className="bg-slate-100" />
-            <DropdownMenuGroup>
-              <Link href="/perfil">
-                <DropdownMenuItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer focus:bg-slate-50 focus:text-slate-900 gap-3">
-                  <User className="w-4 h-4 text-slate-400" />
-                  <span className="font-semibold text-sm">Meu Perfil</span>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/admin/settings">
-                <DropdownMenuItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer focus:bg-slate-50 focus:text-slate-900 gap-3">
-                  <Settings className="w-4 h-4 text-slate-400" />
-                  <span className="font-semibold text-sm">Configurações</span>
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer focus:bg-slate-50 focus:text-slate-900 gap-3">
-                <Bell className="w-4 h-4 text-slate-400" />
-                <span className="font-semibold text-sm">Notificações</span>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator className="bg-slate-100" />
-            <DropdownMenuItem 
-              onClick={() => router.push('/login')}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer focus:bg-red-50 focus:text-red-600 text-red-500 gap-3"
+            <DropdownMenuContent 
+              align="start" 
+              side="top" 
+              sideOffset={12}
+              className="w-72 mb-2 rounded-[20px] bg-white border border-slate-100 shadow-[0_15px_50px_-10px_rgba(0,133,66,0.3)] p-2 animate-in fade-in slide-in-from-bottom-3 duration-300 focus:outline-none"
             >
-              <LogOut className="w-4 h-4" />
-              <span className="font-black text-sm uppercase tracking-wider">Sair da Conta</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
+              {/* Header - Identico à imagem */}
+              <div className="flex items-center gap-3 px-3 py-3 mb-1">
+                <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold text-xs">
+                  RC
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium text-slate-800">Rafael Caldeira</span>
+                  <span className="text-xs text-slate-400">Gestor de UX</span>
+                </div>
+              </div>
+
+              <DropdownMenuItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group/item outline-none">
+                <Plus className="w-4 h-4 text-slate-600" />
+                <span className="text-sm text-slate-700">Adicionar outra conta</span>
+              </DropdownMenuItem>
+              
+              <DropdownMenuSeparator className="my-1.5 bg-slate-100" />
+              
+              <DropdownMenuGroup className="space-y-0.5">
+                <DropdownMenuItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group/item outline-none">
+                  <Sparkles className="w-4 h-4 text-slate-600" />
+                  <span className="text-sm text-slate-700">Personalização</span>
+                </DropdownMenuItem>
+                
+                <Link href="/perfil" className="w-full block">
+                  <DropdownMenuItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group/item outline-none">
+                    <User className="w-4 h-4 text-slate-600" />
+                    <span className="text-sm text-slate-700">Perfil</span>
+                  </DropdownMenuItem>
+                </Link>
+                
+                <Link href="/admin/settings" className="w-full block">
+                  <DropdownMenuItem className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group/item outline-none">
+                    <Settings className="w-4 h-4 text-slate-600" />
+                    <span className="text-sm text-slate-700">Configurações</span>
+                  </DropdownMenuItem>
+                </Link>
+              </DropdownMenuGroup>
+              
+              <DropdownMenuSeparator className="my-1.5 bg-slate-100" />
+              
+              <DropdownMenuGroup className="space-y-0.5">
+                <DropdownMenuItem className="flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group/item outline-none">
+                  <div className="flex items-center gap-3">
+                    <HelpCircle className="w-4 h-4 text-slate-600" />
+                    <span className="text-sm text-slate-700">Ajuda</span>
+                  </div>
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-300" />
+                </DropdownMenuItem>
+                
+                <DropdownMenuItem 
+                  onClick={() => router.push('/login')}
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors group/item outline-none"
+                >
+                  <LogOut className="w-4 h-4 text-slate-600" />
+                  <span className="text-sm text-slate-700">Sair</span>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
           </DropdownMenu>
 
           <Button 
