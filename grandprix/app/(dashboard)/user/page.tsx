@@ -28,7 +28,7 @@ export default function UserDashboardPage() {
       try {
         setIsLoading(true);
         setError(null);
-        const res = await fetch("/api/demandas?authorId=1");
+        const res = await fetch("/api/demandas?authorId=4");
         const payload: unknown = await res.json().catch(() => null);
         const maybe = (payload && typeof payload === "object") ? (payload as Record<string, unknown>) : null;
         const serverError = typeof maybe?.error === "string" ? maybe.error : undefined;

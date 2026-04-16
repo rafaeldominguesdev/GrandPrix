@@ -14,6 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 const geoUrl = "/brazil.json";
 
@@ -80,40 +81,42 @@ export function BrazilHeatmap() {
     <div className="w-full relative group bg-white rounded-[48px] border border-slate-200 shadow-[0_0_80px_-20px_rgba(0,133,66,0.1)] overflow-hidden">
       
       {/* Título Superior */}
-      <div className="absolute top-10 left-10 z-10 pointer-events-none">
+      <div className="absolute top-10 left-10 z-10 pointer-events-none max-w-sm">
         <h3 className="text-3xl font-black text-slate-900 leading-none tracking-tighter uppercase">Mapa de Risco</h3>
-        <p className="text-sm font-black text-[#008542] tracking-[0.3em] uppercase opacity-70">Monitoramento Nacional</p>
+        <p className="text-sm font-black text-[#008542] tracking-[0.3em] uppercase opacity-70 mb-2">Monitoramento Nacional</p>
+        <p className="text-[10px] font-bold text-slate-400 leading-relaxed uppercase tracking-wider">
+          Visualização em tempo real da densidade de barreiras. 
+          Use os indicadores para identificar zonas de criticidade e otimizar o roteamento de especialistas.
+        </p>
       </div>
 
       {/* Legenda Flutuante (Canto Inferior Esquerdo conforme solicitado) */}
       <div className="absolute bottom-10 left-10 z-10 pointer-events-auto">
-        <div className="bg-white/95 backdrop-blur-xl p-6 rounded-[32px] border border-slate-200/50 shadow-2xl w-[240px] space-y-4">
-          <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Níveis de Demanda</p>
+        <div className="bg-white/40 backdrop-blur-2xl p-5 rounded-[28px] border border-white/40 shadow-[0_8px_32px_0_rgba(0,133,66,0.1)] w-[220px] transition-all hover:bg-white/60 group/legend">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-1 h-3 bg-[#008542] rounded-full" />
+            <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Níveis de Demanda</p>
+          </div>
           
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-[#10b981] shadow-[0_0_12px_rgba(16,185,129,0.4)]" />
-                <span className="text-sm font-black text-slate-700 uppercase tracking-tight">Estável</span>
+          <div className="space-y-4">
+            {[
+              { label: "Estável", range: "0-1", color: "bg-[#10b981]", glow: "shadow-[#10b981]/40" },
+              { label: "Atenção", range: "2-9", color: "bg-[#FFD100]", glow: "shadow-[#FFD100]/40" },
+              { label: "Crítico", range: "10+", color: "bg-red-500", glow: "shadow-red-500/40" },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center justify-between group/item">
+                <div className="flex items-center gap-3">
+                  <div className={cn("w-2 h-2 rounded-full shadow-[0_0_8px_2px]", item.color, item.glow)} />
+                  <span className="text-[10px] font-black text-slate-700 uppercase tracking-widest opacity-80 group-hover/item:opacity-100 transition-opacity">
+                    {item.label}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="text-[10px] font-black text-slate-900">{item.range}</span>
+                  <span className="text-[8px] font-bold text-slate-400 uppercase tracking-tighter">DEM.</span>
+                </div>
               </div>
-              <span className="text-xs font-bold text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md">0-1 DEM.</span>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-[#FFD100] shadow-[0_0_12px_rgba(255,209,0,0.45)]" />
-                <span className="text-sm font-black text-slate-700 uppercase tracking-tight">Atenção</span>
-              </div>
-              <span className="text-xs font-bold text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md">2-9 DEM.</span>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.4)]" />
-                <span className="text-sm font-black text-slate-700 uppercase tracking-tight">Crítico</span>
-              </div>
-              <span className="text-xs font-bold text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md">10+ DEM.</span>
-            </div>
+            ))}
           </div>
         </div>
       </div>

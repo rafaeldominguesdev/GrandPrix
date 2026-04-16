@@ -1,5 +1,41 @@
 [
   {
+    "id": "0102dbff-97d1-4967-9327-da8d5662aac1",
+    "titulo": "Teste de TTeste de Topico Rafael",
+    "descricao": "Esta Esta e uma descricao de teste para verificar se o topico aparece em Meus Topicos.",
+    "status": "NOVA",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b-tecnologica",
+      "slug": "tecnologica",
+      "nome": "tecnologica"
+    },
+    "unidade": "Porto Alegre - RS",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 0,
+    "createdAt": "2026-04-16T06:01:46.316Z",
+    "updatedAt": "2026-04-16T06:01:46.316Z",
+    "aiAnalysis": {
+      "suggestedArea": "Triagem automática",
+      "confidence": 0,
+      "summary": "Aguardando análise."
+    }
+  },
+  {
     "id": "1201b0bb-8b48-4cbb-ad24-3624ec0b68e4",
     "titulo": "Teste demanda acessibilidade",
     "descricao": "Descri��o longa o suficiente para passar valida��o, com mais de trinta caracteres.",

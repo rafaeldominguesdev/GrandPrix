@@ -37,8 +37,8 @@ const sidebarItems = [
         icon: LayoutDashboard,
       },
       {
-        title: "Minhas Demandas",
-        href: "/demandas",
+        title: "Meus Tópicos",
+        href: "/user/demandas",
         icon: FileText,
       },
       {
@@ -62,8 +62,8 @@ const sidebarItems = [
         icon: MessageSquare,
       },
       {
-        title: "Usuários",
-        href: "/admin/usuarios",
+        title: "Equipe de Resposta",
+        href: "/admin/equipe",
         icon: Users,
       },
       {

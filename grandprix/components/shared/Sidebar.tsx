@@ -42,7 +42,7 @@ const menuItems = [
     group: "Colaborador",
     items: [
       { title: "Início", href: "/", icon: LayoutDashboard },
-      { title: "Minhas Demandas", href: "/demandas", icon: FileText },
+      { title: "Meus Tópicos", href: "/user/demandas", icon: FileText },
       { title: "Novo Tópico", href: "/user/nova-demanda", icon: PlusCircle },
     ],
   },
@@ -51,7 +51,7 @@ const menuItems = [
     items: [
       { title: "Painel Admin", href: "/admin/dashboard", icon: BarChart3 },
       { title: "Todas Demandas", href: "/admin/demandas", icon: MessageSquare },
-      { title: "Equipe", href: "/admin/usuarios", icon: Users },
+      { title: "Equipe de Resposta", href: "/admin/equipe", icon: Users },
       { title: "Configurações", href: "/admin/settings", icon: Settings },
     ],
   },
