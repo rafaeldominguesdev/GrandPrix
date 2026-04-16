@@ -37,8 +37,8 @@ export default function AdminDashboardPage() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
         <div className="xl:col-span-2 flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
           <div className="space-y-1">
-            <h1 className="text-4xl font-black tracking-tight text-slate-900">Hub de Inteligência</h1>
-            <p className="text-sm font-medium text-slate-500">Monitoramento analítico e triagem inteligente de barreiras à inclusão.</p>
+            <h1 className="title-font text-4xl font-black tracking-tight text-slate-900">Hub de Inteligência</h1>
+            <p className="title-font text-sm font-medium text-slate-500">Monitoramento analítico e triagem inteligente de barreiras à inclusão.</p>
           </div>
           <div className="flex gap-3">
             <Button variant="outline" className="h-12 px-6 font-bold uppercase tracking-widest text-[10px] border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-all rounded-full">
@@ -65,7 +65,7 @@ export default function AdminDashboardPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-black text-slate-900">{stat.value}</div>
+              <div className="number-font text-4xl font-black text-slate-900">{stat.value}</div>
               <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 mt-2">
                 <TrendingUp className="w-3.5 h-3.5" />
                 <span>{stat.trend}</span>
@@ -129,7 +129,7 @@ export default function AdminDashboardPage() {
               <div className="bg-[#008542]/10 w-fit p-3 rounded-2xl mb-4 group-hover:bg-[#008542]/20 transition-colors">
                 <Users className="w-6 h-6 text-[#008542]" />
               </div>
-              <h3 className="text-xl font-black leading-tight text-slate-900 mb-4">Equipe de Resposta</h3>
+              <h3 className="title-font text-xl font-black leading-tight text-slate-900 mb-4">Equipe de Resposta</h3>
               <p className="text-slate-500 text-sm leading-relaxed font-medium">
                 Gerencie permissões e atribua casos para os especialistas de acessibilidade de cada unidade.
               </p>
@@ -149,7 +149,7 @@ export default function AdminDashboardPage() {
       {/* Roteamento Inteligente Inferior */}
       <div className="xl:w-2/3 xl:pr-4 space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-black text-slate-900">Roteamento Inteligente (IA)</h2>
+          <h2 className="title-font text-xl font-black text-slate-900">Roteamento Inteligente (IA)</h2>
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" className="h-10 px-4 text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900">
               <Filter className="w-5 h-5 mr-2" />

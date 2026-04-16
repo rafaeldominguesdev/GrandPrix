@@ -1,20 +1,40 @@
 "use client";
 
-import { mockDemandas } from "@/lib/mock-data";
 import { DemandFeed } from "@/components/features/demands/DemandFeed";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Search, Filter } from "lucide-react";
 import Link from "next/link";
+import * as React from "react";
+import { Demanda } from "@/types/demanda";
 
 export default function UserDemandListPage() {
-  const userDemands = mockDemandas.filter(d => d.autor.id === '1');
+  const [userDemands, setUserDemands] = React.useState<Demanda[]>([]);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        setError(null);
+        const res = await fetch("/api/demandas?authorId=1");
+        const payload = (await res.json().catch(() => null)) as any;
+        if (!res.ok) throw new Error(payload?.error ?? "Falha ao carregar demandas");
+        if (!cancelled) setUserDemands((payload?.data ?? []) as Demanda[]);
+      } catch (e: any) {
+        if (!cancelled) setError(e?.message ?? "Falha ao carregar demandas");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-1">
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight">Meus Relatos</h1>
-          <p className="text-sm font-medium text-slate-500">Gerencie e acompanhe o status de todas as suas solicitações.</p>
+          <h1 className="title-font text-3xl font-black text-slate-900 tracking-tight">Meus Relatos</h1>
+          <p className="title-font text-sm font-medium text-slate-500">Gerencie e acompanhe o status de todas as suas solicitações.</p>
         </div>
         <Link href="/user/nova-demanda">
           <Button className="h-11 px-6 bg-[#008542] hover:bg-[#006e36] text-white font-black uppercase tracking-widest text-[10px] shadow-sm gap-2">
@@ -43,6 +63,12 @@ export default function UserDemandListPage() {
           </span>
         </div>
       </div>
+
+      {error && (
+        <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 font-medium">
+          {error}
+        </div>
+      )}
 
       <DemandFeed data={userDemands} />
     </div>

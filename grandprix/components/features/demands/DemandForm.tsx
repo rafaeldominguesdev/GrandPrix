@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -34,6 +35,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { TipoBarreira, BARREIRA_LABELS } from "@/lib/constants";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   titulo: z.string().min(10, "O título deve ter pelo menos 10 caracteres."),
@@ -54,11 +56,17 @@ const barrierIcons = {
   [TipoBarreira.CULTURAL]: Globe2,
 };
 
+export function DemandForm() {
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submitError, setSubmitError] = React.useState<string | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       titulo: "",
       descricao: "",
+      tipoBarreira: undefined,
       unidade: "",
     },
   });
@@ -117,34 +125,102 @@ const barrierIcons = {
     }
   }, [aiState?.type, aiState?.confidence, form]);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    alert("Demanda enviada para análise técnica.");
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/demandas", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+          authorId: "1",
+        }),
+      });
+
+      const payload = (await res.json().catch(() => null)) as any;
+      if (!res.ok) {
+        setSubmitError(payload?.error ?? "Falha ao enviar o relato.");
+        return;
+      }
+
+      const id = payload?.data?.id as string | undefined;
+      if (id) {
+        router.push(`/user/demandas/${id}`);
+      } else {
+        router.push("/user/demandas");
+      }
+      router.refresh();
+    } catch {
+      setSubmitError("Falha ao enviar o relato.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      <div className="flex items-center gap-2 text-slate-400 hover:text-slate-900 transition-colors w-fit group">
-        <Link href="/demandas" className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
-          <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-          Voltar para meu dashboard
-        </Link>
-      </div>
+    <div className="max-w-5xl mx-auto space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div className="lg:col-span-7 space-y-2">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/user/demandas"
+              className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-slate-500 hover:text-slate-900 transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              Meus relatos
+            </Link>
+            <div className="h-4 w-[1px] bg-slate-200" />
+            <span className="inline-flex items-center rounded-full bg-[#008542]/10 text-[#008542] px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em]">
+              Novo registro
+            </span>
+          </div>
+          <h1 className="title-font text-4xl font-black tracking-tight text-slate-900">Registrar relato</h1>
+          <p className="title-font text-sm font-medium text-slate-500">
+            Quanto mais detalhes (sem citar nomes), mais rápido a triagem encaminha para a área certa.
+          </p>
+        </div>
 
-      <div className="space-y-1">
-        <h1 className="text-3xl font-black tracking-tight text-slate-900">Registrar Relato</h1>
-        <p className="text-sm font-medium text-slate-500">Ajude a identificar barreiras e promover a inclusão na Petrobras.</p>
+        <div className="lg:col-span-5">
+          <div className="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl p-5 shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 p-2.5 rounded-xl bg-slate-100 text-slate-600">
+                <AlertCircle className="w-4 h-4" />
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-500">Dica rápida</p>
+                <p className="text-sm text-slate-700 font-medium leading-relaxed">
+                  Use “Unidade / Local” bem específico (ex.: prédio, andar, sala). Isso reduz idas e vindas na análise.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-8">
-              <Card className="border-slate-200 shadow-sm overflow-hidden">
-                <CardHeader className="bg-slate-50/50 border-b border-slate-100">
-                  <CardTitle className="text-sm font-bold uppercase tracking-widest text-slate-500">Detalhes da Ocorrência</CardTitle>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-7 space-y-6">
+              <Card className="border-slate-200 shadow-sm overflow-hidden rounded-2xl">
+                <CardHeader className="bg-slate-50/70 border-b border-slate-100 py-5">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <CardTitle className="text-sm font-black uppercase tracking-[0.2em] text-slate-600">
+                        Detalhes do relato
+                      </CardTitle>
+                      <CardDescription className="text-xs font-medium text-slate-500 mt-1">
+                        Descreva o que aconteceu e o impacto observado.
+                      </CardDescription>
+                    </div>
+                    <div className="hidden md:flex items-center gap-2">
+                      <span className="inline-flex items-center rounded-full bg-slate-200/60 text-slate-700 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
+                        Tempo: 1–2 min
+                      </span>
+                    </div>
+                  </div>
                 </CardHeader>
-                <CardContent className="p-8 space-y-6">
+                <CardContent className="p-7 md:p-8 space-y-6">
                   <FormField
                     control={form.control}
                     name="titulo"
@@ -152,7 +228,11 @@ const barrierIcons = {
                       <FormItem>
                         <FormLabel className="text-sm font-bold text-slate-700">O que aconteceu? (Título)</FormLabel>
                         <FormControl>
-                          <Input placeholder="Resuma em poucas palavras..." {...field} className="h-12 bg-slate-50 border-slate-200 focus:bg-white transition-all" />
+                          <Input
+                            placeholder="Ex.: Sistema interno não funciona com leitor de tela"
+                            {...field}
+                            className="h-12 bg-slate-50 border-slate-200 focus:bg-white transition-all rounded-xl"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -168,7 +248,7 @@ const barrierIcons = {
                         <FormControl>
                           <Textarea 
                             placeholder="Descreva a situação, o local exato e o impacto observado..." 
-                            className="min-h-[200px] bg-slate-50 border-slate-200 focus:bg-white transition-all resize-none"
+                            className="min-h-[240px] bg-slate-50 border-slate-200 focus:bg-white transition-all resize-none rounded-xl"
                             {...field} 
                           />
                         </FormControl>
@@ -180,9 +260,21 @@ const barrierIcons = {
                     )}
                   />
 
-                  <div className="pt-4">
-                    <div className="flex items-center gap-4 p-4 border border-dashed border-slate-200 rounded-xl bg-slate-50 hover:bg-white transition-all cursor-pointer group">
-                      <div className="p-2 rounded-full bg-slate-200 group-hover:bg-[#008542]/10 group-hover:text-[#008542] transition-all">
+                  {submitError && (
+                    <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 flex items-start gap-3">
+                      <div className="p-2 rounded-xl bg-red-100 text-red-700">
+                        <AlertCircle className="w-4 h-4" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-[10px] font-black uppercase tracking-widest text-red-700/80">Falha ao enviar</p>
+                        <p className="font-medium mt-1">{submitError}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="pt-2">
+                    <div className="flex items-center gap-4 p-4 border border-dashed border-slate-200 rounded-2xl bg-slate-50 hover:bg-white transition-all cursor-pointer group">
+                      <div className="p-2 rounded-xl bg-slate-200 group-hover:bg-[#008542]/10 group-hover:text-[#008542] transition-all">
                         <Paperclip className="w-5 h-5" />
                       </div>
                       <div className="flex-1">
@@ -195,10 +287,10 @@ const barrierIcons = {
               </Card>
             </div>
 
-            <div className="space-y-6">
+            <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-6">
               {/* Copiloto IA Card */}
-              <Card className="border-slate-200 shadow-sm overflow-hidden border-t-4 border-t-slate-800">
-                <CardHeader className="bg-slate-50/50 border-b border-slate-100 pb-4">
+              <Card className="border-slate-200 shadow-sm overflow-hidden border-t-4 border-t-slate-800 rounded-2xl">
+                <CardHeader className="bg-slate-50/70 border-b border-slate-100 py-5">
                   <div className="flex items-center justify-between">
                      <CardTitle className="text-xs font-bold uppercase tracking-widest text-slate-800 flex items-center gap-2">
                         <Sparkles className="w-4 h-4" />
@@ -231,7 +323,7 @@ const barrierIcons = {
                         <p className="text-sm font-bold text-slate-900">{aiState.area}</p>
                       </div>
                       {aiState.confidence > 0 && (
-                        <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1 mt-4">
+                        <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1 mt-4">
                           <p className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
                             <Sparkles className="w-3 h-3 text-[#008542]" /> Insight do Contexto
                           </p>
@@ -244,9 +336,18 @@ const barrierIcons = {
                   )}
                 </CardContent>
               </Card>
-              <Card className="border-slate-200 shadow-sm overflow-hidden">
-                <CardHeader className="bg-slate-50/50 border-b border-slate-100">
-                  <CardTitle className="text-sm font-bold uppercase tracking-widest text-slate-500">Categorização</CardTitle>
+              <Card className="border-slate-200 shadow-sm overflow-hidden rounded-2xl">
+                <CardHeader className="bg-slate-50/70 border-b border-slate-100 py-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <CardTitle className="text-sm font-black uppercase tracking-[0.2em] text-slate-600">
+                        Classificação
+                      </CardTitle>
+                      <CardDescription className="text-xs font-medium text-slate-500 mt-1">
+                        Selecione o tipo e informe a unidade/local.
+                      </CardDescription>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent className="p-6 space-y-6">
                   <FormField
@@ -265,14 +366,14 @@ const barrierIcons = {
                                 key={tipo}
                                 onClick={() => field.onChange(tipo)}
                                 className={cn(
-                                  "flex items-center gap-3 p-3 rounded-xl border-2 transition-all cursor-pointer group",
+                                  "flex items-center gap-3 p-3 rounded-2xl border-2 transition-all cursor-pointer group h-12",
                                   isSelected 
                                     ? "border-[#008542] bg-[#008542]/5" 
                                     : "border-slate-100 hover:border-slate-300 bg-white"
                                 )}
                               >
                                 <div className={cn(
-                                  "p-2 rounded-lg transition-colors",
+                                  "p-2 rounded-xl transition-colors",
                                   isSelected ? "bg-[#008542] text-white" : "bg-slate-100 text-slate-400 group-hover:bg-slate-200"
                                 )}>
                                   <Icon className="w-4 h-4" />
@@ -299,18 +400,31 @@ const barrierIcons = {
                       <FormItem>
                         <FormLabel className="text-sm font-bold text-slate-700">Localização / Unidade</FormLabel>
                         <FormControl>
-                          <Input placeholder="Ex: EDISE - 3º Andar" {...field} className="bg-slate-50 border-slate-200" />
+                          <Input
+                            placeholder="Ex: EDISE - 3º Andar, Sala 12"
+                            {...field}
+                            className="bg-slate-50 border-slate-200 rounded-xl h-11"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
+
+                  <div className="pt-2">
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full h-14 bg-[#008542] hover:bg-[#006e36] disabled:opacity-60 text-white font-black uppercase tracking-[0.2em] text-xs shadow-lg shadow-[#008542]/20 gap-2 rounded-2xl"
+                    >
+                      {isSubmitting ? "Enviando..." : "Enviar relato"} <ArrowRight className="w-4 h-4" />
+                    </Button>
+                    <p className="text-[11px] text-slate-400 font-medium mt-3 text-center">
+                      Ao enviar, você concorda em não incluir dados pessoais sensíveis.
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
-
-              <Button type="submit" className="w-full h-14 bg-[#008542] hover:bg-[#006e36] text-white font-black uppercase tracking-[0.2em] text-xs shadow-lg shadow-[#008542]/20 gap-2">
-                Enviar Relato <ArrowRight className="w-4 h-4" />
-              </Button>
             </div>
           </div>
         </form>

@@ -1,0 +1,884 @@
+[
+  {
+    "id": "1201b0bb-8b48-4cbb-ad24-3624ec0b68e4",
+    "titulo": "Teste demanda acessibilidade",
+    "descricao": "Descri��o longa o suficiente para passar valida��o, com mais de trinta caracteres.",
+    "status": "NOVA",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b-tecnologica",
+      "slug": "tecnologica",
+      "nome": "tecnologica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 0,
+    "createdAt": "2026-04-16T02:00:04.186Z",
+    "updatedAt": "2026-04-16T02:00:04.186Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "Triagem automática",
+      "confidence": 0,
+      "summary": "Aguardando análise."
+    }
+  },
+  {
+    "id": "1",
+    "titulo": "Subestimação da minha capacidade analítica (Capacitismo)",
+    "descricao": "Meu gestor consistentemente repassa tarefas de alta complexidade para outros colegas, acreditando que por causa da minha deficiência visual não consigo entregar planilhas avançadas, mesmo eu usando leitor de tela proficientemente.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "ALTA",
+    "categoria": {
+      "id": "c3",
+      "nome": "Cultura e Liderança"
+    },
+    "tipoBarreira": {
+      "id": "b3",
+      "slug": "comunicacional",
+      "nome": "Atitudinal (Comportamental)"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [
+      {
+        "id": "r1",
+        "conteudo": "Prezada Ana, seu relato foi recebido pela Gerência de Infraestrutura. Uma equipe técnica foi enviada ao local para realizar o nivelamento da rampa e instalar o corrimão conforme as normas de acessibilidade (ABNT NBR 9050).",
+        "autor": {
+          "id": "3",
+          "name": "Mariana Costa",
+          "email": "mariana.costa@petrobras.com.br",
+          "role": "ADMIN",
+          "department": "Sustentabilidade e Acessibilidade",
+          "unit": "Sede Rio de Janeiro (EDISE)",
+          "createdAt": "2023-11-01T00:00:00.000Z",
+          "updatedAt": "2023-11-01T00:00:00.000Z"
+        },
+        "isAdminResponse": true,
+        "demandaId": "1",
+        "createdAt": "2024-04-02T00:00:00.000Z",
+        "updatedAt": "2024-04-02T00:00:00.000Z"
+      }
+    ],
+    "votos": 34,
+    "createdAt": "2024-04-01T10:00:00Z",
+    "updatedAt": "2024-04-03T14:30:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "Recursos Humanos / Diversidade",
+      "confidence": 0.96,
+      "isAttitudinal": true,
+      "summary": "Relato claro de capacitismo e subestimação por liderança.",
+      "solucaoHistorica": {
+        "titulo": "Trilha Anti-Capacitismo Lideranças 2023",
+        "norma": "Política de Diversidade 4.1",
+        "link": "#"
+      }
+    }
+  },
+  {
+    "id": "2",
+    "titulo": "Sistema SAP Inacessível via NVDA",
+    "descricao": "Após a última atualização do ERP, os menus suspensos pararam de ser lidos pelo software NVDA, impossibilitando a aprovação de ordens de serviço por pessoas cegas.",
+    "prioridade": "URGENTE",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "Refinaria REPLAN",
+    "autor": {
+      "id": "2",
+      "name": "Carlos Eduardo Lima",
+      "email": "carlos.lima@petrobras.com.br",
+      "role": "USER",
+      "department": "Tecnologia da Informação",
+      "unit": "Refinaria REPLAN",
+      "createdAt": "2024-02-10T00:00:00.000Z",
+      "updatedAt": "2024-02-10T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 89,
+    "createdAt": "2024-04-05T08:15:00Z",
+    "updatedAt": "2024-04-05T08:15:00Z",
+    "coordinates": [
+      -22.761,
+      -47.1539
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC (Tecnologia da Informação)",
+      "confidence": 0.99,
+      "clusterId": "CLUSTER-SAP-2024",
+      "summary": "Perda de compatibilidade ERP x Leitor de Tela",
+      "solucaoHistorica": {
+        "titulo": "Adequação Portal Jurídico para NVDA",
+        "norma": "WCAG 2.1 AA / NR-17",
+        "link": "#"
+      }
+    },
+    "iniciativaVinculada": {
+      "id": "ini-sap-24",
+      "nome": "Acessibilidade ERP Nacional",
+      "status": "EM_PLANEJAMENTO"
+    }
+  },
+  {
+    "id": "3",
+    "titulo": "Ausência de Intérprete de Libras no Integra",
+    "descricao": "Os vídeos obrigatórios de integração de SMS continuam sendo divulgados sem tradução para Libras, limitando a compreensão de medidas de segurança fundamentais.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "ALTA",
+    "categoria": {
+      "id": "c1",
+      "nome": "Treinamentos"
+    },
+    "tipoBarreira": {
+      "id": "b3",
+      "slug": "comunicacional",
+      "nome": "Comunicacional"
+    },
+    "unidade": "RLAM - Mataripe",
+    "autor": {
+      "id": "3",
+      "name": "Mariana Costa",
+      "email": "mariana.costa@petrobras.com.br",
+      "role": "ADMIN",
+      "department": "Sustentabilidade e Acessibilidade",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2023-11-01T00:00:00.000Z",
+      "updatedAt": "2023-11-01T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 15,
+    "createdAt": "2024-04-10T09:00:00Z",
+    "updatedAt": "2024-04-10T09:00:00Z",
+    "coordinates": [
+      -12.6953,
+      -38.5632
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "Educação Corporativa / SMS",
+      "confidence": 0.92,
+      "summary": "Falta de conteúdo em Libras em curso obrigatório."
+    }
+  },
+  {
+    "id": "4",
+    "titulo": "Barreira Sistêmica #4 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 9,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88
+    }
+  },
+  {
+    "id": "5",
+    "titulo": "Barreira Sistêmica #5 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "ALTA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 2,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88
+    }
+  },
+  {
+    "id": "6",
+    "titulo": "Barreira Sistêmica #6 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 4,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88,
+      "clusterId": "CLUSTER-SAP-2024"
+    },
+    "iniciativaVinculada": {
+      "id": "ini-sap-24",
+      "nome": "Acessibilidade ERP Nacional",
+      "status": "EM_PLANEJAMENTO"
+    }
+  },
+  {
+    "id": "7",
+    "titulo": "Barreira Sistêmica #7 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "ALTA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 6,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88
+    }
+  },
+  {
+    "id": "8",
+    "titulo": "Barreira Sistêmica #8 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 5,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88
+    }
+  },
+  {
+    "id": "9",
+    "titulo": "Barreira Sistêmica #9 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "ALTA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 2,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88,
+      "clusterId": "CLUSTER-SAP-2024"
+    },
+    "iniciativaVinculada": {
+      "id": "ini-sap-24",
+      "nome": "Acessibilidade ERP Nacional",
+      "status": "EM_PLANEJAMENTO"
+    }
+  },
+  {
+    "id": "10",
+    "titulo": "Barreira Sistêmica #10 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 4,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88
+    }
+  },
+  {
+    "id": "11",
+    "titulo": "Barreira Sistêmica #11 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "ALTA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 8,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88
+    }
+  },
+  {
+    "id": "12",
+    "titulo": "Barreira Sistêmica #12 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 2,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88,
+      "clusterId": "CLUSTER-SAP-2024"
+    },
+    "iniciativaVinculada": {
+      "id": "ini-sap-24",
+      "nome": "Acessibilidade ERP Nacional",
+      "status": "EM_PLANEJAMENTO"
+    }
+  },
+  {
+    "id": "13",
+    "titulo": "Barreira Sistêmica #13 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "ALTA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 4,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88
+    }
+  },
+  {
+    "id": "14",
+    "titulo": "Barreira Sistêmica #14 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 0,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88
+    }
+  },
+  {
+    "id": "15",
+    "titulo": "Barreira Sistêmica #15 em Software Interno",
+    "descricao": "Problemas recorrentes de contraste e navegação por teclado em ferramenta administrativa.",
+    "status": "EM_ANDAMENTO",
+    "prioridade": "ALTA",
+    "categoria": {
+      "id": "c2",
+      "nome": "Sistemas Digitais"
+    },
+    "tipoBarreira": {
+      "id": "b2",
+      "slug": "tecnologica",
+      "nome": "Tecnológica"
+    },
+    "unidade": "EDISE - Rio de Janeiro",
+    "autor": {
+      "id": "1",
+      "name": "Ana Paula Souza",
+      "email": "ana.souza@petrobras.com.br",
+      "role": "USER",
+      "department": "Recursos Humanos",
+      "unit": "Sede Rio de Janeiro (EDISE)",
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 9,
+    "createdAt": "2024-04-12T10:00:00Z",
+    "updatedAt": "2024-04-12T10:00:00Z",
+    "coordinates": [
+      -22.9068,
+      -43.1729
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "TIC",
+      "confidence": 0.88,
+      "clusterId": "CLUSTER-SAP-2024"
+    },
+    "iniciativaVinculada": {
+      "id": "ini-sap-24",
+      "nome": "Acessibilidade ERP Nacional",
+      "status": "EM_PLANEJAMENTO"
+    }
+  },
+  {
+    "id": "16",
+    "titulo": "Comportamento Restritivo #16",
+    "descricao": "Relato de infantilização e brincadeiras não apropriadas relacionadas à deficiência física.",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c3",
+      "nome": "Cultura e Liderança"
+    },
+    "tipoBarreira": {
+      "id": "b3",
+      "slug": "comunicacional",
+      "nome": "Atitudinal (Comportamental)"
+    },
+    "unidade": "RPBC - Cubatão",
+    "autor": {
+      "id": "2",
+      "name": "Carlos Eduardo Lima",
+      "email": "carlos.lima@petrobras.com.br",
+      "role": "USER",
+      "department": "Tecnologia da Informação",
+      "unit": "Refinaria REPLAN",
+      "createdAt": "2024-02-10T00:00:00.000Z",
+      "updatedAt": "2024-02-10T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 2,
+    "createdAt": "2024-04-14T08:00:00Z",
+    "updatedAt": "2024-04-14T08:00:00Z",
+    "coordinates": [
+      -23.8906,
+      -46.4258
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "Recursos Humanos",
+      "confidence": 0.95,
+      "isAttitudinal": true
+    }
+  },
+  {
+    "id": "17",
+    "titulo": "Comportamento Restritivo #17",
+    "descricao": "Relato de infantilização e brincadeiras não apropriadas relacionadas à deficiência física.",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c3",
+      "nome": "Cultura e Liderança"
+    },
+    "tipoBarreira": {
+      "id": "b3",
+      "slug": "comunicacional",
+      "nome": "Atitudinal (Comportamental)"
+    },
+    "unidade": "RPBC - Cubatão",
+    "autor": {
+      "id": "2",
+      "name": "Carlos Eduardo Lima",
+      "email": "carlos.lima@petrobras.com.br",
+      "role": "USER",
+      "department": "Tecnologia da Informação",
+      "unit": "Refinaria REPLAN",
+      "createdAt": "2024-02-10T00:00:00.000Z",
+      "updatedAt": "2024-02-10T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 2,
+    "createdAt": "2024-04-14T08:00:00Z",
+    "updatedAt": "2024-04-14T08:00:00Z",
+    "coordinates": [
+      -23.8906,
+      -46.4258
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "Recursos Humanos",
+      "confidence": 0.95,
+      "isAttitudinal": true
+    }
+  },
+  {
+    "id": "18",
+    "titulo": "Comportamento Restritivo #18",
+    "descricao": "Relato de infantilização e brincadeiras não apropriadas relacionadas à deficiência física.",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c3",
+      "nome": "Cultura e Liderança"
+    },
+    "tipoBarreira": {
+      "id": "b3",
+      "slug": "comunicacional",
+      "nome": "Atitudinal (Comportamental)"
+    },
+    "unidade": "RPBC - Cubatão",
+    "autor": {
+      "id": "2",
+      "name": "Carlos Eduardo Lima",
+      "email": "carlos.lima@petrobras.com.br",
+      "role": "USER",
+      "department": "Tecnologia da Informação",
+      "unit": "Refinaria REPLAN",
+      "createdAt": "2024-02-10T00:00:00.000Z",
+      "updatedAt": "2024-02-10T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 2,
+    "createdAt": "2024-04-14T08:00:00Z",
+    "updatedAt": "2024-04-14T08:00:00Z",
+    "coordinates": [
+      -23.8906,
+      -46.4258
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "Recursos Humanos",
+      "confidence": 0.95,
+      "isAttitudinal": true
+    }
+  },
+  {
+    "id": "19",
+    "titulo": "Comportamento Restritivo #19",
+    "descricao": "Relato de infantilização e brincadeiras não apropriadas relacionadas à deficiência física.",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c3",
+      "nome": "Cultura e Liderança"
+    },
+    "tipoBarreira": {
+      "id": "b3",
+      "slug": "comunicacional",
+      "nome": "Atitudinal (Comportamental)"
+    },
+    "unidade": "RPBC - Cubatão",
+    "autor": {
+      "id": "2",
+      "name": "Carlos Eduardo Lima",
+      "email": "carlos.lima@petrobras.com.br",
+      "role": "USER",
+      "department": "Tecnologia da Informação",
+      "unit": "Refinaria REPLAN",
+      "createdAt": "2024-02-10T00:00:00.000Z",
+      "updatedAt": "2024-02-10T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 2,
+    "createdAt": "2024-04-14T08:00:00Z",
+    "updatedAt": "2024-04-14T08:00:00Z",
+    "coordinates": [
+      -23.8906,
+      -46.4258
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "Recursos Humanos",
+      "confidence": 0.95,
+      "isAttitudinal": true
+    }
+  },
+  {
+    "id": "20",
+    "titulo": "Comportamento Restritivo #20",
+    "descricao": "Relato de infantilização e brincadeiras não apropriadas relacionadas à deficiência física.",
+    "prioridade": "MEDIA",
+    "categoria": {
+      "id": "c3",
+      "nome": "Cultura e Liderança"
+    },
+    "tipoBarreira": {
+      "id": "b3",
+      "slug": "comunicacional",
+      "nome": "Atitudinal (Comportamental)"
+    },
+    "unidade": "RPBC - Cubatão",
+    "autor": {
+      "id": "2",
+      "name": "Carlos Eduardo Lima",
+      "email": "carlos.lima@petrobras.com.br",
+      "role": "USER",
+      "department": "Tecnologia da Informação",
+      "unit": "Refinaria REPLAN",
+      "createdAt": "2024-02-10T00:00:00.000Z",
+      "updatedAt": "2024-02-10T00:00:00.000Z"
+    },
+    "respostas": [],
+    "votos": 2,
+    "createdAt": "2024-04-14T08:00:00Z",
+    "updatedAt": "2024-04-14T08:00:00Z",
+    "coordinates": [
+      -23.8906,
+      -46.4258
+    ],
+    "aiAnalysis": {
+      "suggestedArea": "Recursos Humanos",
+      "confidence": 0.95,
+      "isAttitudinal": true
+    }
+  }
+]

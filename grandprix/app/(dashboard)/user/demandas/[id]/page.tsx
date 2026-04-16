@@ -1,12 +1,11 @@
 "use client";
 
-import { use } from "react";
-import { notFound } from "next/navigation";
-import { mockDemandas } from "@/lib/mock-data";
+import * as React from "react";
 import { ThreadView } from "@/components/features/demands/ThreadView";
 import { ChevronLeft, MessageSquare, ShieldCheck, Share2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Demanda } from "@/types/demanda";
 
 interface DemandDetailPageProps {
   params: Promise<{
@@ -15,18 +14,53 @@ interface DemandDetailPageProps {
 }
 
 export default function UserDemandDetailPage({ params }: DemandDetailPageProps) {
-  const { id } = use(params);
-  const demanda = mockDemandas.find((d) => d.id === id);
+  const { id } = React.use(params);
+  const [demanda, setDemanda] = React.useState<Demanda | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        setError(null);
+        const res = await fetch(`/api/demandas/${id}`);
+        const payload = (await res.json().catch(() => null)) as any;
+        if (!res.ok) throw new Error(payload?.error ?? "Falha ao carregar demanda");
+        if (!cancelled) setDemanda((payload?.data ?? null) as Demanda | null);
+      } catch (e: any) {
+        if (!cancelled) setError(e?.message ?? "Falha ao carregar demanda");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [id]);
+
+  if (error) {
+    return (
+      <div className="max-w-5xl mx-auto">
+        <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 font-medium">
+          {error}
+        </div>
+      </div>
+    );
+  }
 
   if (!demanda) {
-    notFound();
+    return (
+      <div className="max-w-5xl mx-auto">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-600 font-medium">
+          Carregando...
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="max-w-5xl mx-auto space-y-10">
       <div className="flex items-center justify-between border-b border-slate-200 pb-6">
         <div className="flex items-center gap-4">
-          <Link href="/demandas">
+          <Link href="/user/demandas">
             <Button variant="ghost" size="icon" className="text-slate-400 hover:text-slate-900 rounded-full">
               <ChevronLeft className="w-5 h-5" />
             </Button>

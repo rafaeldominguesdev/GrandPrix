@@ -1,6 +1,5 @@
 "use client";
 
-import { mockDemandas } from "@/lib/mock-data";
 import { 
   PlusCircle, 
   ArrowUpRight, 
@@ -14,9 +13,35 @@ import Link from "next/link";
 import { DemandTable } from "@/components/features/demands/DemandTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import * as React from "react";
+import { Demanda } from "@/types/demanda";
+import { DemandaStatus } from "@/lib/constants";
 
 export default function UserDashboardPage() {
-  const userDemands = mockDemandas.filter(d => d.autor.id === '1');
+  const [userDemands, setUserDemands] = React.useState<Demanda[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const res = await fetch("/api/demandas?authorId=1");
+        const payload = (await res.json().catch(() => null)) as any;
+        if (!res.ok) throw new Error(payload?.error ?? "Falha ao carregar demandas");
+        if (!cancelled) setUserDemands((payload?.data ?? []) as Demanda[]);
+      } catch (e: any) {
+        if (!cancelled) setError(e?.message ?? "Falha ao carregar demandas");
+      } finally {
+        if (!cancelled) setIsLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   
   const stats = [
     {
@@ -28,14 +53,14 @@ export default function UserDashboardPage() {
     },
     {
       title: "Em Andamento",
-      value: userDemands.filter(d => d.status === 'EM_ANDAMENTO').length,
+      value: userDemands.filter(d => d.status === DemandaStatus.EM_ANDAMENTO).length,
       icon: Clock,
       color: "text-amber-600",
       bg: "bg-amber-50",
     },
     {
       title: "Resolvidos",
-      value: userDemands.filter(d => d.status === 'RESOLVIDA').length,
+      value: userDemands.filter(d => d.status === DemandaStatus.RESOLVIDA).length,
       icon: CheckCircle2,
       color: "text-emerald-600",
       bg: "bg-emerald-50",
@@ -53,12 +78,12 @@ export default function UserDashboardPage() {
     <div className="space-y-10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-1">
-          <h1 className="text-4xl font-black tracking-tight text-slate-900">Portal de Acessibilidade</h1>
-          <p className="text-sm font-medium text-slate-500">Acompanhe seus relatos e sugestões para um ambiente mais inclusivo.</p>
+          <h1 className="title-font text-4xl font-black tracking-tight text-slate-900">Portal de Acessibilidade</h1>
+          <p className="title-font text-sm font-medium text-slate-500">Acompanhe seus relatos e sugestões para um ambiente mais inclusivo.</p>
         </div>
-        <Link href="/nova-demanda">
-          <Button className="h-11 px-6 bg-slate-900 hover:bg-slate-800 text-white font-bold uppercase tracking-widest text-[10px] rounded-full shadow-md gap-2 transition-all">
-            <PlusCircle className="w-4 h-4 text-[#008542]" />
+        <Link href="/user/nova-demanda">
+          <Button className="h-11 px-6 bg-[#008542] hover:bg-[#006e36] text-white font-bold uppercase tracking-widest text-[10px] rounded-full shadow-md gap-2 transition-colors">
+            <PlusCircle className="w-4 h-4 text-white" />
             Novo Registro
           </Button>
         </Link>
@@ -76,7 +101,7 @@ export default function UserDashboardPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-black text-slate-900">{stat.value}</div>
+              <div className="number-font text-3xl font-black text-slate-900">{stat.value}</div>
               <div className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 mt-2">
                 <ArrowUpRight className="w-3.5 h-3.5" />
                 <span>ATUALIZADO AGORA</span>
@@ -89,7 +114,7 @@ export default function UserDashboardPage() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl font-black text-slate-900">Histórico Recente</h2>
+            <h2 className="title-font text-xl font-black text-slate-900">Histórico Recente</h2>
             <div className="h-6 w-[1px] bg-slate-200"></div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{userDemands.length} Itens</span>
           </div>
@@ -102,12 +127,19 @@ export default function UserDashboardPage() {
           </div>
         </div>
         
+        {error && (
+          <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 flex items-start gap-2">
+            <AlertCircle className="w-4 h-4 mt-0.5" />
+            <span className="font-medium">{error}</span>
+          </div>
+        )}
+
         <DemandTable data={userDemands} />
       </div>
 
       <div className="bg-[#008542] rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden group">
         <div className="space-y-4 relative z-10 max-w-xl text-center md:text-left">
-          <h3 className="text-2xl font-black text-white">Transformando relatos em ações práticas.</h3>
+          <h3 className="title-font text-2xl font-black text-white">Transformando relatos em ações práticas.</h3>
           <p className="text-white/70 text-sm leading-relaxed font-medium">
             Seu canal direto para garantir que todos tenham as mesmas oportunidades e acessos dentro da Petrobras. 
             Nossa equipe analisa cada item em até 48h úteis.

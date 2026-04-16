@@ -1,11 +1,33 @@
 "use client";
 
-import { mockDemandas } from "@/lib/mock-data";
 import { DemandFeed } from "@/components/features/demands/DemandFeed";
 import { Search, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import * as React from "react";
+import { Demanda } from "@/types/demanda";
 
 export default function AdminDemandListPage() {
+  const [demandas, setDemandas] = React.useState<Demanda[]>([]);
+  const [error, setError] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        setError(null);
+        const res = await fetch("/api/demandas");
+        const payload = (await res.json().catch(() => null)) as any;
+        if (!res.ok) throw new Error(payload?.error ?? "Falha ao carregar demandas");
+        if (!cancelled) setDemandas((payload?.data ?? []) as Demanda[]);
+      } catch (e: any) {
+        if (!cancelled) setError(e?.message ?? "Falha ao carregar demandas");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -44,7 +66,13 @@ export default function AdminDemandListPage() {
           </div>
         </div>
 
-        <DemandFeed data={mockDemandas} isAdmin={true} />
+        {error && (
+          <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 font-medium">
+            {error}
+          </div>
+        )}
+
+        <DemandFeed data={demandas} isAdmin={true} />
       </div>
     </div>
   );
