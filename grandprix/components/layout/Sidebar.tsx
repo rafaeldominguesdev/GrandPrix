@@ -118,11 +118,7 @@ export function Sidebar() {
 
       <div className="p-3 border-t border-slate-200 mt-auto bg-white/50">
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button 
-              variant="ghost" 
-              className="w-full flex items-center gap-3 px-3 py-6 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all group justify-start"
-            >
+          <DropdownMenuTrigger className="w-full flex items-center gap-3 px-3 py-6 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all group justify-start bg-transparent cursor-pointer">
               <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs shrink-0 group-hover:scale-105 transition-transform">
                 RC
               </div>
@@ -130,7 +126,6 @@ export function Sidebar() {
                 <p className="text-sm font-bold text-slate-900 leading-none truncate w-full">Rafael Caldeira</p>
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 truncate w-full">Gestor de UX</p>
               </div>
-            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" side="right" className="w-64 mb-4 rounded-2xl border-slate-200 shadow-xl p-2 animate-in slide-in-from-left-2 duration-200">
             <DropdownMenuGroup>
