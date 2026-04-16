@@ -15,6 +15,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, MessageSquare, Calendar, MapPin, ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import Link from "next/link";
 
 const geoUrl = "/brazil.json";
 
@@ -28,10 +35,23 @@ const STATUS_COLORS = {
 
 export function BrazilHeatmap() {
   const [mounted, setMounted] = React.useState(false);
+  const [selectedState, setSelectedState] = React.useState<string | null>(null);
+  const [isHoveringOverlay, setIsHoveringOverlay] = React.useState(false);
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
+
+  React.useEffect(() => {
+    if (selectedState && isHoveringOverlay) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedState, isHoveringOverlay]);
 
   // 1. Processamento de Dados
   const stateStats = mockDemandas.reduce((acc, demanda) => {
@@ -67,6 +87,11 @@ export function BrazilHeatmap() {
   }, {} as Record<string, { name: string, coordinates: [number, number], count: number }>);
 
   const unitsArray = Object.values(unitStats);
+
+  // Filtrar demandas do estado selecionado
+  const selectedDemands = selectedState 
+    ? mockDemandas.filter(d => d.unidade && UNIT_TO_STATE[d.unidade] === selectedState)
+    : [];
 
   if (!mounted) return (
     <div className="w-full bg-white rounded-[48px] border border-slate-200 p-8 shadow-sm h-[840px] flex items-center justify-center">
@@ -151,7 +176,8 @@ export function BrazilHeatmap() {
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
                 geographies.map((geo) => {
-                  const stats = stateStats[geo.properties?.sigla];
+                  const sigla = geo.properties?.sigla;
+                  const stats = stateStats[sigla];
                   const fillColor = stats 
                     ? (stats.status === "Crítico" ? STATUS_COLORS.CRITICAL : (stats.status === "Atenção" ? STATUS_COLORS.ATTENTION : STATUS_COLORS.STABLE))
                     : STATUS_COLORS.EMPTY;
@@ -163,12 +189,20 @@ export function BrazilHeatmap() {
                       fill={fillColor}
                       stroke="#ffffff"
                       strokeWidth={1.5}
-                      className="transition-[stroke,stroke-width] duration-500 ease-out cursor-pointer outline-none"
+                      onClick={() => {
+                        if (stats && stats.count > 0) {
+                          setSelectedState(sigla);
+                        }
+                      }}
+                      className={cn(
+                        "transition-[stroke,stroke-width] duration-500 ease-out outline-none",
+                        stats && stats.count > 0 ? "cursor-pointer" : "cursor-default"
+                      )}
                       style={{
                         default: { outline: "none" },
                         hover: { 
-                          stroke: "url(#petrobrasGradient)",
-                          strokeWidth: 4,
+                          stroke: stats && stats.count > 0 ? "url(#petrobrasGradient)" : "#ffffff",
+                          strokeWidth: stats && stats.count > 0 ? 4 : 1.5,
                           fill: fillColor,
                           transition: "all 300ms"
                         },
@@ -226,6 +260,112 @@ export function BrazilHeatmap() {
           </ComposableMap>
         </TooltipProvider>
       </div>
+
+      {/* Overlay de Demandas Lateral (Premium Glassmorphism) */}
+      <AnimatePresence>
+        {selectedState && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedState(null)}
+              className="absolute inset-0 z-40 bg-slate-900/10 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              onMouseEnter={() => setIsHoveringOverlay(true)}
+              onMouseLeave={() => setIsHoveringOverlay(false)}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="absolute top-0 right-0 h-full w-[480px] z-50 bg-white/95 backdrop-blur-2xl border-l border-slate-100 shadow-[-20px_0_80px_rgba(0,0,0,0.1)] flex flex-col overscroll-contain"
+            >
+              {/* Header do Painel */}
+              <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-white/50">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <MapPin className="w-4 h-4 text-[#008542]" />
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Localidade Selecionada</span>
+                  </div>
+                  <h4 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Estado: {selectedState}</h4>
+                  <p className="text-xs font-bold text-slate-500">{selectedDemands.length} demandas ativas identificadas</p>
+                </div>
+                <button 
+                  onClick={() => setSelectedState(null)}
+                  className="p-3 rounded-2xl bg-slate-100 hover:bg-red-50 text-slate-400 hover:text-red-500 transition-all duration-300 group"
+                >
+                  <X className="w-6 h-6 transition-transform group-hover:rotate-90" />
+                </button>
+              </div>
+
+              {/* Lista de Demandas */}
+              <ScrollArea className="flex-1 p-6 overscroll-contain">
+                <div className="space-y-4">
+                  {selectedDemands.map((demanda) => (
+                    <motion.div
+                      key={demanda.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-5 rounded-[32px] border border-slate-100 bg-white hover:border-[#008542]/30 hover:shadow-xl hover:shadow-[#008542]/5 transition-all group/card overflow-hidden relative"
+                    >
+                      <div className="relative z-10">
+                        <div className="flex items-start justify-between mb-3">
+                          <Badge variant="outline" className="text-[9px] font-black uppercase tracking-widest border-slate-200 text-slate-500">
+                             {demanda.unidade}
+                          </Badge>
+                          <div className="flex items-center gap-1.5 text-[10px] font-black text-slate-400 uppercase">
+                             <Calendar className="w-3 h-3" />
+                             {format(new Date(demanda.createdAt), "dd MMM", { locale: ptBR })}
+                          </div>
+                        </div>
+
+                        <h5 className="font-bold text-slate-900 group-hover/card:text-[#008542] transition-colors mb-2 line-clamp-1">
+                          {demanda.titulo}
+                        </h5>
+
+                        <div className="flex items-center justify-between mt-4">
+                          <div className="flex items-center gap-4">
+                             <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500">
+                               <MessageSquare className="w-4 h-4" />
+                               {demanda.respostas.length}
+                             </div>
+                             <div className={cn(
+                               "px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tight",
+                               demanda.status === "EM_ANDAMENTO" ? "bg-amber-100 text-amber-700" : "bg-blue-100 text-blue-700"
+                             )}>
+                               {demanda.status.replace("_", " ")}
+                             </div>
+                          </div>
+                          
+                          <Link href={`/admin/demandas/${demanda.id}`}>
+                            <button className="flex items-center gap-2 text-[10px] font-black text-[#008542] uppercase tracking-[0.1em] hover:translate-x-1 transition-transform">
+                              Detalhes <ArrowRight className="w-3 h-3" />
+                            </button>
+                          </Link>
+                        </div>
+                      </div>
+                      
+                      {/* Efeito Visual de Fundo */}
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#008542]/5 rounded-full blur-3xl -mr-16 -mt-16 opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                    </motion.div>
+                  ))}
+                </div>
+              </ScrollArea>
+
+              {/* Footer do Painel */}
+              <div className="p-8 border-t border-slate-100 bg-slate-50/50">
+                <button 
+                  onClick={() => setSelectedState(null)}
+                  className="w-full py-4 rounded-[24px] bg-[#008542] text-white font-black uppercase tracking-[0.2em] text-xs shadow-lg shadow-[#008542]/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  Fechar Visualização
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
     </div>
   );

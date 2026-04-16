@@ -1,0 +1,209 @@
+[33mcommit dbcbb478f8a72791bd7a0e3b1d4ed62468bfa011[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 13:41:52 2026 -0300
+
+    docs: finalize portfolio-ready README highlighting leadership and technical fixes
+
+[33mcommit b3162408792fd91d2d7d984cf4777bb8f106d65d[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 13:28:11 2026 -0300
+
+    docs: fix README location to root for better visibility
+
+[33mcommit 1448c7bb204072a71be769f9d2ee10e77e11770a[m
+Author: Rafael Fernandes <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 13:15:37 2026 -0300
+
+    Create README.md
+
+[33mcommit 79ce6d44b4eee458e5e240a40a7161e84dfd928d[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 13:12:36 2026 -0300
+
+    docs: finalize README and Lean Canvas for hackathon pitch
+
+[33mcommit 41e81a5cb0f808fc2868d754d45240729ee04df7[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 08:42:21 2026 -0300
+
+    fix: hydration errors, sidebar types and add leancanvas.md
+
+[33mcommit 3a286401e5cb5f651e0ee443ff955e6d4e1e5505[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 06:21:37 2026 -0300
+
+    fix: ensure data consistency and required fields in mock-data.ts
+
+[33mcommit 7865ce90d95bdf0d70ccc140f83e2fc5b1fbef67[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 06:09:21 2026 -0300
+
+    eat: implement response team dashboard and refine risk map aesthetics
+
+[33mcommit c16137b07bd683b0590c2fa61f06094652ecb01d[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 02:49:23 2026 -0300
+
+    feat: redesign login and sidebar profile menu with premium aesthetics
+
+[33mcommit 11b836b34d941b694547395bec48049227a5f7a1[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 02:38:38 2026 -0300
+
+    feat: redesign login and sidebar profile menu with premium aesthetics
+
+[33mcommit 9d78558311387d75eba0c23e31461eb6bcbbdd2d[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 01:46:27 2026 -0300
+
+    fix: show password toggle and cursor blink on focus
+
+[33mcommit d710215285612b628dbdbf475f4770aa72fdf21e[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 01:40:19 2026 -0300
+
+    feat: add full-screen animated background with green, yellow and white glowing blobs on login page
+
+[33mcommit c8aad0f5b5a8ea68efdf244b63a06ab90a50d57d[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 01:27:45 2026 -0300
+
+    icon of petrobras implement in the screen login
+
+[33mcommit a8ed151546f225ae4dec23e6f0741b8038744333[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Thu Apr 16 01:22:12 2026 -0300
+
+    new screen of login
+
+[33mcommit aa9b527194940c629bb829c3e74ac313e3c30da0[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 23:51:16 2026 -0300
+
+    style: update UI colors and refine motion timings
+
+[33mcommit a21ac8f43effbaee0cf78a348506d87ada18d314[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 23:45:02 2026 -0300
+
+    style: refine sidebar profile footer and collapse button layout
+
+[33mcommit 9643105521d7868a81dc26ad9565b5775a5e3389[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 23:25:29 2026 -0300
+
+    style: align admin header actions to far right
+
+[33mcommit c68944c888c8c16917cef62a602ca00ed48a0e22[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 23:22:09 2026 -0300
+
+    feat: implement demand creation flow and JetBrains Mono stylin
+
+[33mcommit 78900a7f4a2fb3f4d66bf0feb4edab2821df1ae7[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 22:44:45 2026 -0300
+
+    i: padroniza paleta corporativa e alinha grid do dashboard
+
+[33mcommit a5ccca38617b03666f9d80c1efc31b5f8f682e32[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 21:53:09 2026 -0300
+
+    ui(layout): refina alinhamento do header, sincroniza collapse da sidebar e corrige erros de hidratação
+
+[33mcommit 1eaae5046f808f17b93a5e688474286898ed2f44[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 21:25:29 2026 -0300
+
+    efactor: remove notifications button from header components
+
+[33mcommit c69a5032c97d52e611fb08bc6ad595f518fa9278[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 20:46:56 2026 -0300
+
+    style: global typography upgrade to improve legibility across all dashboard metrics and labels
+
+[33mcommit 229814bc466ab105431195b3dd8a93ac327f3ed8[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 20:29:13 2026 -0300
+
+    style(admin): add petrobras gradient hover and glow effects to map states
+
+[33mcommit c47bcd3751d32b6b157f17e28c265514ca7072bd[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 20:25:16 2026 -0300
+
+    style(admin): revert to floating map layout with legend in bottom-left corner
+
+[33mcommit ad6dcb8a95d0eabfc2b8ab4d5d04dcdf9718ad6e[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 20:17:50 2026 -0300
+
+    style(admin): overhaul map legend aesthetics and improve state visibility
+
+[33mcommit 7313d83d55081cce4d17e8c32515e90b4e804b55[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 20:15:47 2026 -0300
+
+    feat(admin): implement functional choropleth map with 3-level data-driven status logic
+
+[33mcommit 4668bf7621f47bb224462a7f7d788c85bb33a2f3[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 20:06:21 2026 -0300
+
+    style(admin): finalize map scaling within large container for optimal padding
+
+[33mcommit 40d3aa89ea08da549eef326d9d28d45bb764c8a1[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 19:55:48 2026 -0300
+
+    fix(admin): resolve blank map issue by using local geojson and client-side rendering
+
+[33mcommit 2bc7f493b0864203d3c6cf68f651077b3d819c21[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 19:34:52 2026 -0300
+
+    feat(ui): update official logo and refine sidebar branding
+
+[33mcommit 65dd95be1d68b0adc06b7ce7d19a7ea13b5a7a6b[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 19:23:20 2026 -0300
+
+    update interface frontend new workspaces of forum
+
+[33mcommit 2d8c2a13ddc75aa94bc31d27f94465050a5f5b00[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 18:50:04 2026 -0300
+
+    update all project frontend
+
+[33mcommit cc045ed6ecaa8d8aa2fb4492a07fc49a602ef33e[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 15:45:06 2026 -0300
+
+    fix: converte pasta grandprix para o repo principal e add novos updates visuais
+
+[33mcommit 51773aadb33379df9a011f273bc98c432509fd14[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 14:55:45 2026 -0300
+
+    Firts version of project petrobras
+
+[33mcommit 067253644152ad728b367ef47ac21a1716cc1795[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 14:02:04 2026 -0300
+
+    project
+
+[33mcommit bb57a9233576582c8ba1134ae96d607e2e2bd256[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 13:54:50 2026 -0300
+
+    link project for github
+
+[33mcommit c430718f3c0547c34d025ba6ce12c65ac3693145[m
+Author: rafaeldominguesdev <rafadominguesdev@gmail.com>
+Date:   Wed Apr 15 13:52:37 2026 -0300
+
+    link project for github
