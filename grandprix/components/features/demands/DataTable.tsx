@@ -79,16 +79,11 @@ export function DataTable<TData, TValue>({
           {/* Custom filters could go here */}
         </div>
         <DropdownMenu>
-          {(() => {
-            const Trigger = DropdownMenuTrigger as any;
-            return (
-              <Trigger asChild>
-                <Button variant="outline" size="sm" className="ml-auto h-10 border-slate-200 font-bold uppercase tracking-widest text-[10px]">
-                  Colunas <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </Trigger>
-            );
-          })()}
+          <DropdownMenuTrigger render={
+            <Button variant="outline" size="sm" className="ml-auto h-10 border-slate-200 font-bold uppercase tracking-widest text-xs">
+              Colunas <ChevronDown className="ml-2 h-4 w-4" />
+            </Button>
+          } />
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()
@@ -115,7 +110,7 @@ export function DataTable<TData, TValue>({
               <TableRow key={headerGroup.id} className="hover:bg-transparent border-slate-100">
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="text-[10px] font-bold uppercase tracking-widest text-slate-500 py-4">
+                    <TableHead key={header.id} className="text-xs font-bold uppercase tracking-widest text-slate-500 py-4">
                       {header.isPlaceholder
                         ? null
                         : flexRender(

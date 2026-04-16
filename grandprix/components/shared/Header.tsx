@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Bell, Search, User, ChevronRight, Home } from "lucide-react";
+import { Search, User, ChevronRight, Home } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -45,11 +45,7 @@ export function Header() {
 
       {/* Profile & Notifications */}
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" className="text-slate-500 relative hover:bg-slate-50 rounded-full">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-2.5 right-2.5 w-1.5 h-1.5 bg-[#FFD100] rounded-full border border-white"></span>
-        </Button>
-        <div className="h-6 w-[1px] bg-slate-200 mx-1"></div>
+
         <div className="flex items-center gap-3 pl-2 group cursor-pointer">
           <div className="flex flex-col items-end">
             <span className="text-sm font-bold text-slate-900 leading-none">Rafael Caldeira</span>

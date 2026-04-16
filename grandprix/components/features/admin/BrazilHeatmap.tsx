@@ -72,7 +72,7 @@ export function BrazilHeatmap() {
     <div className="w-full bg-white rounded-[48px] border border-slate-200 p-8 shadow-sm h-[700px] flex items-center justify-center">
       <div className="text-center space-y-4">
         <div className="w-12 h-12 border-4 border-[#008542] border-t-transparent rounded-full animate-spin mx-auto" />
-        <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">Carregando Geointeligência...</p>
+        <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Carregando Geointeligência...</p>
       </div>
     </div>
   );
@@ -83,13 +83,13 @@ export function BrazilHeatmap() {
       {/* Título Superior */}
       <div className="absolute top-10 left-10 z-10 pointer-events-none">
         <h3 className="text-3xl font-black text-slate-900 leading-none tracking-tighter uppercase">Mapa de Risco</h3>
-        <p className="text-[10px] font-black text-[#008542] tracking-[0.3em] uppercase opacity-70">Monitoramento Nacional</p>
+        <p className="text-sm font-black text-[#008542] tracking-[0.3em] uppercase opacity-70">Monitoramento Nacional</p>
       </div>
 
       {/* Legenda Flutuante (Canto Inferior Esquerdo conforme solicitado) */}
       <div className="absolute bottom-10 left-10 z-10 pointer-events-auto">
         <div className="bg-white/95 backdrop-blur-xl p-6 rounded-[32px] border border-slate-200/50 shadow-2xl w-[240px] space-y-4">
-          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Níveis de Demanda</p>
+          <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Níveis de Demanda</p>
           
           <div className="space-y-3">
             <div className="flex items-center justify-between">
@@ -203,16 +203,16 @@ export function BrazilHeatmap() {
                     <TooltipContent side="top" className="p-4 bg-white border-slate-200 shadow-2xl rounded-2xl max-w-xs">
                       <div className="space-y-3">
                         <div>
-                          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Unidade Operacional</p>
+                          <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Unidade Operacional</p>
                           <p className="text-base font-bold text-slate-900 leading-tight">{name}</p>
                         </div>
                         <div className="flex items-center justify-between border-t border-slate-100 pt-3">
                             <div>
-                              <p className="text-[9px] font-black text-slate-400 uppercase">Demandas</p>
+                              <p className="text-xs font-black text-slate-400 uppercase">Demandas</p>
                               <p className="text-lg font-black text-slate-900">{count}</p>
                             </div>
                             <div className="text-right">
-                                <p className="text-[9px] font-black text-slate-400 uppercase">Status</p>
+                                <p className="text-xs font-black text-slate-400 uppercase">Status</p>
                                 <span className="text-xs font-bold text-slate-500 bg-slate-50 px-3 py-1 rounded-md uppercase">Ativa</span>
                              </div>
                         </div>
@@ -226,20 +226,6 @@ export function BrazilHeatmap() {
         </TooltipProvider>
       </div>
 
-      {/* Insights SideBadge (Redesenhado para não poluir) */}
-      <div className="absolute bottom-10 right-10 z-10">
-        <div className="bg-slate-900 text-white p-5 rounded-[28px] shadow-2xl flex items-center gap-4 border border-white/10 max-w-[320px]">
-          <div className="w-10 h-10 bg-[#ef4444] rounded-full flex items-center justify-center animate-pulse shrink-0">
-             <span className="text-lg font-black italic">!</span>
-          </div>
-          <div>
-            <p className="text-xs font-black text-red-400 uppercase tracking-[0.2em] mb-1">Alerta de Crise</p>
-            <p className="text-sm font-medium leading-tight">
-              O <span className="text-white font-bold">Rio de Janeiro</span> ultrapassou o limite operacional (10+).
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

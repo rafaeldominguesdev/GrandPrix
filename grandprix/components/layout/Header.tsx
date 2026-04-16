@@ -1,8 +1,9 @@
 "use client";
 
-import { Bell, Search, User } from "lucide-react";
+import { Search, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+
 
 export function Header() {
   return (
@@ -18,11 +19,7 @@ export function Header() {
       </div>
 
       <div className="flex items-center gap-3">
-        <Button variant="ghost" size="icon" className="text-slate-500 relative">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-        </Button>
-        <div className="h-8 w-[1px] bg-slate-200 mx-2"></div>
+
         <Button variant="ghost" className="gap-2 px-2 hover:bg-slate-50">
           <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
             <User className="w-4 h-4" />
